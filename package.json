@@ -1,28 +1,22 @@
 {
   "name": "offset-limit",
-  "version": "0.0.0",
-  "description": "My flawless module",
-  "license": "MIT",
-  "repository": "unlight/offset-limit",
-  "author": {
-    "name": "Roman",
-    "email": "s91630277@gmail.com",
-    "url": "rv-home.ru"
-  },
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "scripts": {
-    "test": "mocha"
-  },
-  "files": [
-    "index.js"
-  ],
-  "keywords": [
-    ""
-  ],
+  "version": "1.0.0",
+  "description": "Convert various forms of querystring limit/offset, page, limit/range to database limit/offset.",
+  "license": "Beerware",
+  "author": "S (http://rv-home.ru)",
+  "scripts": {},
+  "keywords": [],
   "dependencies": {},
   "devDependencies": {
-    "mocha": "^2.2.5"
-  }
+    "tape": "^4.2.0"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unlight/offset-limit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/unlight/offset-limit/issues"
+  },
+  "homepage": "https://github.com/unlight/offset-limit#readme"
 }

@@ -1,49 +1,46 @@
 "use strict";
 
-function offsetLimit(offsetOrPage, limitOrPageSize, throw) {
-	limitOrPageSize = is_numeric(limitOrPageSize) ? (int) limitOrPageSize : 50;
-	if (is_numeric(offsetOrPage)) {
-		Offset = (int) offsetOrPage;
-		Limit = limitOrPageSize;
-	}
-	elseif(preg_match('/p(\d+)/i', offsetOrPage, Matches)) {
-		Page = Matches[1];
-		Offset = limitOrPageSize * (Page - 1);
-		Limit = limitOrPageSize;
-	}
-	elseif(preg_match('/(\d+)-(\d+)/', offsetOrPage, Matches)) {
-		Offset = Matches[1] - 1;
-		Limit = Matches[2] - Matches[1] + 1;
-	}
-	elseif(preg_match('/(\d+)lim(\d*)/i', offsetOrPage, Matches)) {
-		Offset = (int) Matches[1];
-		Limit = (int) Matches[2];
-		if (!is_numeric(Limit)) {
-			Limit = limitOrPageSize;
+function offsetLimit(offsetOrPage, limitOrSize, throwException) {
+	offsetOrPage = String(offsetOrPage);
+	if (limitOrSize === undefined) limitOrSize = 50;
+	if (throwException === undefined) throwException = true;
+	var matches;
+	var page, offset, limit;
+	if (matches = offsetOrPage.match(/^\d+$/)) {
+		offset = +offsetOrPage;
+		limit = limitOrSize;
+	} else if (matches = offsetOrPage.match(/^p(\d+)$/i)) {
+		page = matches[1];
+		offset = limitOrSize * (page - 1);
+		limit = limitOrSize;
+	} else if (matches = offsetOrPage.match(/^(\d+)-(\d+)$/)) {
+		offset = +matches[1] - 1;
+		limit = +matches[2] - matches[1] + 1;
+	} else if (matches = offsetOrPage.match(/^(\d+)lim(\d*)$/i)) {
+		offset = +matches[1];
+		limit = +matches[2];
+		if (!limit) {
+			limit = limitOrSize;
 		}
-	}
-	elseif(preg_match('/(\d+)lin(\d*)/i', offsetOrPage, Matches)) {
-		Offset = Matches[1] - 1;
-		Limit = (int) Matches[2];
-		if (!is_numeric(Limit)) {
-			Limit = limitOrPageSize;
+	} else if (matches = offsetOrPage.match(/^(\d+)lin(\d*)$/i)) {
+		offset = matches[1] - 1;
+		limit = +matches[2];
+		if (!limit) {
+			limit = limitOrSize;
 		}
-	}
-	elseif(offsetOrPage &&
-		throw) {
-		// Some unrecognized page string was passed.
-		throw NotFoundException();
+	} else if (offsetOrPage && throwException) {
+		throw new TypeError("Some unrecognized page string was passed.");
 	} else {
-		Offset = 0;
-		Limit = limitOrPageSize;
+		offset = 0;
+		limit = limitOrSize;
 	}
-	if (Offset < 0) {
-		Offset = 0;
+	if (offset < 0) {
+		offset = 0;
 	}
-	if (Limit < 0) {
-		Limit = 50;
+	if (limit < 0) {
+		limit = 50;
 	}
-	return array(Offset, Limit);
+	return [offset, limit];
 }
 
 module.exports = offsetLimit;

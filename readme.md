@@ -1,46 +1,51 @@
-# offset-limit [![Build Status](https://travis-ci.org/unlight/offset-limit.svg?branch=master)](https://travis-ci.org/unlight/offset-limit)
+offset-limit
+------------
+Convert various forms of querystring limit/offset, page, 
+limit/range to database limit/offset.
 
-> My flawless module
+Code was extracted from [vanilla](https://github.com/vanilla/vanilla]) framework.
 
-
-## Install
-
+INSTALL
+-------
 ```
 $ npm install --save offset-limit
 ```
 
-
-## Usage
-
+USAGE
+-----
 ```js
-var offsetLimit = require('offset-limit');
-
-offsetLimit('unicorns');
-//=> unicorns & rainbows
+var offsetLimit = require("offset-limit");
+offsetLimit("p1"); // => [0, 50]
 ```
 
+API
+---
 
-## API
+### offsetLimit(offsetOrPage, [limitOrSize, [throwException]])
 
-### offsetLimit(input, [options])
-
-#### input
+#### offsetOrPage
 
 *Required*  
 Type: `string`
 
-Lorem ipsum.
+The page query in one of the following formats:
+- `p<x>`: Get page x.
+- `<x>-<y>`: This is a range viewing records x through y.
+- `<x>lim<n>`: This is a limit/offset pair.
+- `<x>`: This is a limit where offset is given in the next parameter.
 
-#### options
+#### limitOrSize
 
-##### foo
+*Optional*  
+Type: `int`  
+Default: 50
 
+The page size or limit.
+
+#### throwException
+
+*Optional*  
 Type: `boolean`  
-Default: `false`
+Default: true
 
-Lorem ipsum.
-
-
-## License
-
-MIT © [Roman](http://rv-home.ru)
+Throw exception if `offsetOrPage` unrecognized format passed.
