@@ -3,7 +3,7 @@ offset-limit
 Convert various forms of querystring limit/offset, page, 
 limit/range to database limit/offset.
 
-Code was extracted from [vanilla](https://github.com/vanilla/vanilla]) framework.
+Code was extracted from [vanilla](https://github.com/vanilla/vanilla) framework.
 
 INSTALL
 -------
