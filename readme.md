@@ -1,5 +1,7 @@
 offset-limit
 ------------
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/unlight/offset-limit.svg)](https://greenkeeper.io/)
 Convert various forms of querystring limit/offset, page, 
 limit/range to database limit/offset.
 
