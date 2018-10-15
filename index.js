@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 function offsetLimit(offsetOrPage, limitOrSize, throwException) {
 	offsetOrPage = String(offsetOrPage);
@@ -29,7 +29,7 @@ function offsetLimit(offsetOrPage, limitOrSize, throwException) {
 			limit = limitOrSize;
 		}
 	} else if (offsetOrPage && throwException) {
-		throw new TypeError("Some unrecognized page string was passed.");
+		throw new TypeError('Some unrecognized page string was passed.');
 	} else {
 		offset = 0;
 		limit = limitOrSize;

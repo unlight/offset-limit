@@ -2,13 +2,12 @@
   "name": "offset-limit",
   "version": "1.0.1",
   "description": "Convert various forms of querystring limit/offset, page, limit/range to database limit/offset.",
-  "license": "Beerware",
-  "author": "S (http://rv-home.ru)",
+  "license": "MIT",
   "scripts": {},
   "keywords": [],
   "dependencies": {},
   "devDependencies": {
-    "tape": "^4.2.0"
+    "tape": "^4.9.1"
   },
   "main": "index.js",
   "repository": {
